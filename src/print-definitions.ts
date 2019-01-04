@@ -17,8 +17,8 @@ interface PrintOptions {
   rootDir: string;
 }
 
-const KIND_LENGTH = 9;
-const LINE_LENGTH = 48;
+const KIND_LENGTH = 20;
+const LINE_LENGTH = 32;
 const EXT_PAD = KIND_LENGTH + LINE_LENGTH + 4;
 
 function locLink(loc: Location | null | undefined, options: PrintOptions): string {
@@ -31,11 +31,12 @@ function locLink(loc: Location | null | undefined, options: PrintOptions): strin
 
   const relativeName = path.relative(options.rootDir || '.', loc.source.name);
 
-  return terminalLink(`${relativeName}:${real.line}:${real.column}`, url, {
-    fallback(text) {
-      return text;
-    },
-  });
+  const text = `${relativeName}:${real.line}:${real.column}`;
+  if (!(options && options.color)) {
+    return text;
+  }
+
+  return terminalLink(text, url);
 }
 
 function formatDefinitionPosition(def: ExtendedDefinitionNode, options: PrintOptions) {
@@ -65,8 +66,12 @@ function formatDefinitionPosition(def: ExtendedDefinitionNode, options: PrintOpt
   ].join(' ');
 }
 
-function printTopDefinitions(document: ExtendedDocumentNode, options: Partial<PrintOptions> = {}) {
+export default function printDefinitions(
+  document: ExtendedDocumentNode,
+  options: Partial<PrintOptions> = {},
+) {
   const opts: PrintOptions = {
+    ...options,
     color: !!options.color,
     rootDir: typeof options.rootDir !== 'undefined' ? options.rootDir : process.cwd(),
   };
@@ -80,5 +85,3 @@ function printTopDefinitions(document: ExtendedDocumentNode, options: Partial<Pr
 
   return out.join('\n');
 }
-
-export default printTopDefinitions;

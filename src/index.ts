@@ -15,7 +15,7 @@ import {
 } from 'graphql';
 
 export { default as loadSources } from './load-sources';
-export { default as printTopDefinitions } from './print-top-definitions';
+export { default as printTopDefinitions } from './print-definitions';
 export { default as traverseModules } from './traverse-modules';
 
 export function runIntrospectionQuery(schema: GraphQLSchema): ExecutionResult<IntrospectionQuery> {

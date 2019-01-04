@@ -12,7 +12,7 @@ import glob from 'glob'; // tslint:disable-line: match-default-export-name
 import path from 'path';
 import { promisify } from 'util';
 import loadAndMerge from './load-and-merge';
-import printTopDefinitions from './print-top-definitions';
+import printDefinitions from './print-definitions';
 
 const asyncGlob = promisify(glob);
 
@@ -41,7 +41,7 @@ export default async function traverseModules<T = void>(
   const commonAstWithPagination = expandPaginationOnAST(commonRawAst);
   const commonAst = mergeExtensionsInDocument(commonAstWithPagination);
 
-  console.log(printTopDefinitions(commonRawAst, { color: true, rootDir: dir }));
+  console.log(printDefinitions(commonRawAst, { color: true, rootDir: dir }));
 
   const modulesPath = path.join(dir, 'modules/');
   const moduleDirs = await asyncGlob(path.join(modulesPath, '/*/'));
