@@ -4,22 +4,38 @@
  * **NOTE:**
  * 👉 This file should not use any 3rd party dependency
  */
-const { writeFileSync, copyFileSync } = require('fs');
+const { writeFileSync, copyFileSync, mkdirSync, existsSync } = require('fs');
 const { resolve } = require('path');
 const packageJson = require('../package.json');
 
+const projectRoot = resolve(__dirname, '..');
+const distPath = resolve(projectRoot, 'dist');
+
 main();
 
+/**
+ * @param {string} src
+ * @param {string} [dist]
+ */
+function copy(src, dist) {
+  return copyFileSync(resolve(projectRoot, src), resolve(distPath, dist || src));
+}
+
 function main() {
-  const projectRoot = resolve(__dirname, '..');
-  const distPath = resolve(projectRoot, 'dist');
   const distPackageJson = createDistPackageJson(packageJson);
 
-  copyFileSync(resolve(projectRoot, 'README.md'), resolve(distPath, 'README.md'));
-  copyFileSync(resolve(projectRoot, 'CHANGELOG.md'), resolve(distPath, 'CHANGELOG.md'));
-  copyFileSync(resolve(projectRoot, 'LICENSE.md'), resolve(distPath, 'LICENSE.md'));
-  copyFileSync(resolve(projectRoot, '.npmignore'), resolve(distPath, '.npmignore'));
+  copy('README.md');
+  copy('CHANGELOG.md');
+  copy('LICENSE.md');
+  copy('.npmignore');
   writeFileSync(resolve(distPath, 'package.json'), distPackageJson);
+  if (packageJson.bin) {
+    const binPath = resolve(distPath, 'bin');
+    if (!existsSync(binPath)) mkdirSync(binPath);
+    for (const [name, binPath] of Object.entries(packageJson.bin)) {
+      copy(binPath);
+    }
+  }
 }
 
 /**

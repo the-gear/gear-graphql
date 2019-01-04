@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`print-kind works 1`] = `
+"scalar    URL                                              * ]8;;vscode://file/GraphQL request:2:1GraphQL request:2:1]8;;
+directive ref                                              * ]8;;vscode://file/GraphQL request:4:1GraphQL request:4:1]8;;
+scalar    Complex                                          * ]8;;vscode://file/GraphQL request:7:1GraphQL request:7:1]8;;
+input     LoginInput                                       * ]8;;vscode://file/GraphQL request:9:1GraphQL request:9:1]8;;
+interface Node                                             * ]8;;vscode://file/GraphQL request:14:1GraphQL request:14:1]8;;
+type      LoginResult                                      * ]8;;vscode://file/GraphQL request:18:1GraphQL request:18:1]8;;
+type      Query                                            * ]8;;vscode://file/GraphQL request:22:1GraphQL request:22:1]8;;
+type      Mutation                                         * ]8;;vscode://file/GraphQL request:27:1GraphQL request:27:1]8;;
+enum      Decision                                         * ]8;;vscode://file/GraphQL request:31:1GraphQL request:31:1]8;;
+extend enum Decision                                         * ]8;;vscode://file/GraphQL request:32:1GraphQL request:32:1]8;;
+extend interface Node                                             * ]8;;vscode://file/GraphQL request:34:1GraphQL request:34:1]8;;
+extend type Query                                            * ]8;;vscode://file/GraphQL request:39:1GraphQL request:39:1]8;;
+extend input LoginInput                                       * ]8;;vscode://file/GraphQL request:43:1GraphQL request:43:1]8;;
+schema                                                     * ]8;;vscode://file/GraphQL request:47:1GraphQL request:47:1]8;;
+type      Subscription                                     * ]8;;vscode://file/GraphQL request:52:1GraphQL request:52:1]8;;
+extend schema                                                  * ]8;;vscode://file/GraphQL request:56:1GraphQL request:56:1]8;;"
+`;
