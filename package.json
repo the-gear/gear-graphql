@@ -98,21 +98,24 @@
     "tslib": "^1.9.0"
   },
   "dependencies": {
+    "@the-gear/graphql-rewrite": "^0.1.0",
     "ansi-colors": "^3.2.3",
+    "graphql-code-generator": "^0.15.2",
     "invariant": "^2.2.4",
     "mkdirp": "^0.5.1",
-    "terminal-link": "^1.2.0",
-    "@the-gear/graphql-rewrite": "^0.1.0"
+    "terminal-link": "^1.2.0"
   },
   "scripts": {
     "cleanup": "shx rm -rf dist",
     "prebuild": "yarn run cleanup && yarn run verify",
     "build:cjs": "tsc",
     "build:esm": "tsc --module esnext --outDir dist/esm",
-    "build": "yarn run build:cjs && yarn run build:esm",
+    "build-only": "yarn run build:cjs && yarn run build:esm",
+    "build": "yarn run build-only",
     "postbuild": "node scripts/copy.js",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest",
+    "test:snapshots": "jest -u",
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
     "test:ci": "yarn test --ci",

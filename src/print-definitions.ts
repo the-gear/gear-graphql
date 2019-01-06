@@ -17,9 +17,9 @@ interface PrintOptions {
   rootDir: string;
 }
 
-const KIND_LENGTH = 20;
-const LINE_LENGTH = 32;
-const EXT_PAD = KIND_LENGTH + LINE_LENGTH + 4;
+const KIND_LENGTH = 10;
+const NAME_LENGTH = 40;
+const EXT_PAD = KIND_LENGTH + NAME_LENGTH + 4;
 
 function locLink(loc: Location | null | undefined, options: PrintOptions): string {
   if (!loc) {
@@ -61,7 +61,7 @@ function formatDefinitionPosition(def: ExtendedDefinitionNode, options: PrintOpt
 
   return [
     color ? (def.isImplicitDep ? c.yellow : c.yellowBright.bold)(formattedKind) : formattedKind,
-    name.padEnd(LINE_LENGTH),
+    name.padEnd(NAME_LENGTH),
     color ? c.blueBright(location) : location,
   ].join(' ');
 }

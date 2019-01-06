@@ -1,5 +1,4 @@
 // tslint:disable:no-console
-// tslint:disable:no-magic-numbers
 
 import {
   expandPaginationOnAST,
@@ -15,6 +14,8 @@ import loadAndMerge from './load-and-merge';
 import printDefinitions from './print-definitions';
 
 const asyncGlob = promisify(glob);
+
+const NAME_LENGTH = 50;
 
 export interface GraphQLModule {
   name: string;
@@ -36,7 +37,7 @@ export default async function traverseModules<T = void>(
   moduleCallback?: (modul: GraphQLModule) => Promise<T>,
 ): Promise<ReadonlyArray<GraphQLModule | T>> {
   // Load common definitions from `schema/common/`
-  console.error(c.bold.inverse(` ${'COMMON GraphQL Definitions'.padEnd(56)} `));
+  console.error(c.bold.inverse(` ${'COMMON GraphQL Definitions'} `.padEnd(NAME_LENGTH)));
   const commonRawAst = await loadAndMerge(path.join(dir, 'common/**/*.gql'));
   const commonAstWithPagination = expandPaginationOnAST(commonRawAst);
   const commonAst = mergeExtensionsInDocument(commonAstWithPagination);
@@ -50,7 +51,7 @@ export default async function traverseModules<T = void>(
   // For each directory matching `schema/modules/*`:
   for (const moduleDir of moduleDirs) {
     const name = path.basename(moduleDir);
-    console.error(c.bold.inverse(` ${name.padEnd(56)} `));
+    console.error(c.bold.inverse(` ${name} `.padEnd(NAME_LENGTH)));
 
     // Read all GraphQL definitions
     const moduleGlob = path.join(moduleDir, './**/*.gql');

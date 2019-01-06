@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`print-kind works 1`] = `
-"scalar               URL                              * GraphQL request:2:1
-directive            ref                              * GraphQL request:4:1
-scalar               Complex                          * GraphQL request:7:1
-input                LoginInput                       * GraphQL request:9:1
-interface            Node                             * GraphQL request:14:1
-type                 LoginResult                      * GraphQL request:18:1
-type                 Query                            * GraphQL request:22:1
-type                 Mutation                         * GraphQL request:27:1
-enum                 Decision                         * GraphQL request:31:1
-extend enum          Decision                         * GraphQL request:32:1
-extend interface     Node                             * GraphQL request:34:1
-extend type          Query                            * GraphQL request:39:1
-extend input         LoginInput                       * GraphQL request:43:1
-schema                                                * GraphQL request:47:1
-type                 Subscription                     * GraphQL request:52:1
-extend schema                                         * GraphQL request:56:1"
+"scalar     URL                                      * GraphQL request:2:1
+directive  ref                                      * GraphQL request:4:1
+scalar     Complex                                  * GraphQL request:7:1
+input      LoginInput                               * GraphQL request:9:1
+interface  Node                                     * GraphQL request:14:1
+type       LoginResult                              * GraphQL request:18:1
+type       Query                                    * GraphQL request:22:1
+type       Mutation                                 * GraphQL request:27:1
+enum       Decision                                 * GraphQL request:31:1
+extend enum Decision                                 * GraphQL request:32:1
+extend interface Node                                     * GraphQL request:34:1
+extend type Query                                    * GraphQL request:39:1
+extend input LoginInput                               * GraphQL request:43:1
+schema                                              * GraphQL request:47:1
+type       Subscription                             * GraphQL request:52:1
+extend schema                                          * GraphQL request:56:1"
 `;
