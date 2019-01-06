@@ -1,6 +1,6 @@
 {
   "name": "@the-gear/graphql-gear",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The ⚙️ Gear: GraphQL Gear",
   "bin": {
     "gear-graphql-build": "./bin/gear-graphql-build"
