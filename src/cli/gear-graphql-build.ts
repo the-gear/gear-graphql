@@ -3,6 +3,7 @@ import { ExtendedDocumentNode } from '@the-gear/graphql-rewrite';
 import c from 'ansi-colors';
 import fs from 'fs';
 import { assertValidSchema, buildASTSchema, DocumentNode, GraphQLSchema, print } from 'graphql';
+import { generate } from 'graphql-code-generator';
 import mkdirp from 'mkdirp';
 import path from 'path';
 import prettier from 'prettier';
@@ -83,7 +84,8 @@ async function writeModule({ name, moduleAst, typeDefs }: GraphQLModule) {
     await writeTypeDefs(typeDefs, path.join(moduleDistPath, 'typeDefs.json'));
     const schema = buildASTSchema(typeDefs);
     assertValidSchema(schema);
-    await writeIntrospectionJSON(schema, path.join(moduleDistPath, 'introspection.json'));
+    const introspectionFileName = path.join(moduleDistPath, 'introspection.json');
+    await writeIntrospectionJSON(schema, introspectionFileName);
 
     console.log(
       printTopDefinitions(typeDefs, {
@@ -91,6 +93,47 @@ async function writeModule({ name, moduleAst, typeDefs }: GraphQLModule) {
         rootDir: path.resolve(ROOT, './schema/modules/'),
       }),
     );
+
+    const typesDir = path.join(moduleDistPath, 'types');
+    await asyncMkdirp(typesDir);
+    try {
+      await generate(
+        {
+          schema: introspectionFileName,
+          overwrite: true,
+          // documents: './src/**/*.graphql',
+          config: {
+            noNamespaces: true,
+            enumsAsTypes: true,
+            immutableTypes: true,
+          },
+          generates: {
+            [path.join(typesDir, './server.ts')]: {
+              plugins: [
+                { add: '/* tslint:disable */\n// THIS FILE IS GENERATED. DO NOT EDIT!' },
+                'time',
+                'typescript-common',
+                'typescript-server',
+                'typescript-resolvers',
+              ],
+            },
+            [path.join(typesDir, './client.tsx')]: {
+              plugins: [
+                { add: '/* tslint:disable */\n// THIS FILE IS GENERATED. DO NOT EDIT!' },
+                'time',
+                'typescript-common',
+                'typescript-client',
+                'typescript-react-apollo',
+              ],
+            },
+          },
+        },
+        true,
+      );
+    } catch (err) {
+      errCount++;
+      console.error(c.red.bold(`ERROR: graphql-code-generator failed:`), err);
+    }
   } else {
     errCount++;
     console.error(c.red.bold(`ERROR: typeDefs was not generated`));
