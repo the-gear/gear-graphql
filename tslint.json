@@ -7,7 +7,7 @@
     "tslint-config-prettier"
   ],
   "linterOptions": {
-    "exclude": ["*.json"]
+    "exclude": ["*.json", "bin/*"]
   },
   "rules": {
     // types related rules
