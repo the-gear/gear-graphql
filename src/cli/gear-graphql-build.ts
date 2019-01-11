@@ -6,9 +6,9 @@ import { assertValidSchema, buildASTSchema, DocumentNode, GraphQLSchema, print }
 import { generate } from 'graphql-code-generator';
 import mkdirp from 'mkdirp';
 import path from 'path';
-import prettier from 'prettier';
 import { promisify } from 'util';
 import { printTopDefinitions, runIntrospectionQuery, traverseModules } from '..';
+import jsonStringify from '../json-stringify';
 import { GraphQLModule } from '../traverse-modules';
 
 const asyncMkdirp = promisify(mkdirp);
@@ -25,9 +25,7 @@ let isoDate = new Date().toISOString();
 
 async function writeIntrospectionJSON(schema: GraphQLSchema, fileName: string) {
   const introspection = runIntrospectionQuery(schema);
-  const formatted = prettier.format(JSON.stringify(introspection), {
-    parser: 'json',
-  });
+  const formatted = jsonStringify(introspection);
   await writeFile(fileName, formatted);
 
   return schema;
@@ -47,9 +45,7 @@ async function writeTypeDefs(typeDefs: DocumentNode, fileName: string): Promise<
 
     return value;
   };
-  const formatted = prettier.format(JSON.stringify(typeDefs, replacer), {
-    parser: 'json',
-  });
+  const formatted = jsonStringify(typeDefs, replacer);
   await writeFile(fileName, formatted);
 
   return typeDefs;
