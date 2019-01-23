@@ -8,18 +8,17 @@ import mkdirp from 'mkdirp';
 import path from 'path';
 import { promisify } from 'util';
 import { printTopDefinitions, runIntrospectionQuery, traverseModules } from '..';
+import config from '../config';
 import jsonStringify from '../json-stringify';
 import { GraphQLModule } from '../traverse-modules';
 
+// console.log('CONFIG:', config);
+
 const asyncMkdirp = promisify(mkdirp);
-
-const ROOT = process.cwd();
-const BUILD_DIR_PATH = path.resolve(ROOT, './dist');
-
 const writeFile = promisify(fs.writeFile);
 
 let errCount = 0;
-const mkTargetPath = (...args: string[]) => path.resolve(BUILD_DIR_PATH, ...args);
+const mkTargetPath = (...args: string[]) => path.resolve(config.outDir, ...args);
 
 let isoDate = new Date().toISOString();
 
@@ -86,7 +85,7 @@ async function writeModule({ name, moduleAst, typeDefs }: GraphQLModule) {
     console.log(
       printTopDefinitions(typeDefs, {
         color: true,
-        rootDir: path.resolve(ROOT, './schema/modules/'),
+        rootDir: path.resolve(config.rootDir, './schema/modules/'),
       }),
     );
 
@@ -139,8 +138,8 @@ async function writeModule({ name, moduleAst, typeDefs }: GraphQLModule) {
 async function run() {
   isoDate = new Date().toISOString();
   errCount = 0;
-  await asyncMkdirp(BUILD_DIR_PATH);
-  await traverseModules(path.join(ROOT, './schema/'), writeModule);
+  await asyncMkdirp(config.outDir);
+  await traverseModules(path.join(config.srcDir, './**/*.graphql'), writeModule);
   if (errCount > 0) {
     throw new Error(`${errCount} module(s) not build`);
   }
