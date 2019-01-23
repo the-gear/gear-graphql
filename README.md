@@ -1,10 +1,10 @@
-# graphql-gear
+# gear-graphql
 
 > The ⚙️ Gear: GraphQL Gear
 
-[![Build Status](https://travis-ci.com/the-gear/graphql-gear.svg?branch=master)](https://travis-ci.com/the-gear/graphql-gear)
-[![NPM version](https://img.shields.io/npm/v/@the-gear/graphql-gear.svg)](https://www.npmjs.com/package/@the-gear/graphql-gear)
-![Downloads](https://img.shields.io/npm/dm/@the-gear/graphql-gear.svg)
+[![Build Status](https://travis-ci.com/the-gear/gear-graphql.svg?branch=master)](https://travis-ci.com/the-gear/gear-graphql)
+[![NPM version](https://img.shields.io/npm/v/@the-gear/gear-graphql.svg)](https://www.npmjs.com/package/@the-gear/gear-graphql)
+![Downloads](https://img.shields.io/npm/dm/@the-gear/gear-graphql.svg)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
@@ -12,7 +12,7 @@
 ## Installing
 
 ```sh
-yarn add @the-gear/graphql-gear
+yarn add @the-gear/gear-graphql
 ```
 
 ## Getting started

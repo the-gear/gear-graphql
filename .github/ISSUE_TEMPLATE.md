@@ -4,7 +4,7 @@
 
 ## Bug report
 
-- @the-gear/graphql-gear version: _x.x.x_ (<!-- (run `npm list @the-gear/graphql-gear` from a terminal/cmd prompt): -->)
+- @the-gear/gear-graphql version: _x.x.x_ (<!-- (run `npm list @the-gear/gear-graphql` from a terminal/cmd prompt): -->)
 - Affected browsers (and versions): _IE 10_
 
 ### Current behaviour

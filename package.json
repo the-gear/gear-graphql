@@ -1,5 +1,5 @@
 {
-  "name": "@the-gear/graphql-gear",
+  "name": "@the-gear/gear-graphql",
   "version": "0.3.0",
   "description": "The ⚙️ Gear: GraphQL Gear",
   "bin": {
@@ -17,9 +17,9 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/the-gear/graphql-gear"
+    "url": "https://github.com/the-gear/gear-graphql"
   },
-  "author": "Pavel Lang <langpavel+graphql-gear@the-gear.cz>",
+  "author": "Pavel Lang <langpavel+gear-graphql@the-gear.cz>",
   "contributors": [],
   "license": "MIT",
   "publishConfig": {

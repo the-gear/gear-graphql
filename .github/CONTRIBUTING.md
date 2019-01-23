@@ -1,6 +1,6 @@
 # Contributing
 
-First of all, thanks for your interest in contributing to the graphql-gear! 🎉
+First of all, thanks for your interest in contributing to the gear-graphql! 🎉
 
 PRs are the preferred way to spike ideas and address issues, if you have time. If you plan on contributing frequently, please feel free to ask to become a maintainer; the more the merrier. 🤙
 
@@ -39,4 +39,4 @@ We use https://conventionalcommits.org/ message format. you can use `yarn commit
 
 ## License
 
-By contributing your code to the graphql-gear GitHub Repository, you agree to license your contribution under the MIT license.
+By contributing your code to the gear-graphql GitHub Repository, you agree to license your contribution under the MIT license.
